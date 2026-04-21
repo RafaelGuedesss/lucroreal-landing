@@ -54,7 +54,7 @@ export default function Hero() {
 
           {/* Left: content */}
           <motion.div
-            className="flex flex-col gap-5"
+            className="flex flex-col gap-5 order-2 lg:order-1"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -140,8 +140,8 @@ export default function Hero() {
 
           {/* Right: phone mockup with scroll parallax */}
           <motion.div
-            className="flex items-center justify-center lg:justify-end"
-            style={{ y: phoneY, opacity: phoneOpacity }}
+            className="flex items-center justify-center lg:justify-end order-1 lg:order-2"
+            style={{ y: phoneY }}
             initial={{ opacity: 0, x: 40, scale: 0.96 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
