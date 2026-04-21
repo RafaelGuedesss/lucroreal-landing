@@ -39,11 +39,11 @@ export default function Navbar() {
           <Image
             src="/screenshots/fiorino.jpg"
             alt="Lucro Real"
-            width={56}
-            height={56}
+            width={88}
+            height={88}
             className="object-contain mix-blend-multiply dark:mix-blend-normal dark:brightness-90"
           />
-          <span className="font-black text-base tracking-tight text-orange-500">
+          <span className="font-black text-xl tracking-tight text-orange-500">
             LUCRO REAL
           </span>
         </a>

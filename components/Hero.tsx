@@ -49,18 +49,18 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-20 lg:py-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-6 pb-16 lg:py-0">
         <div className="grid grid-cols-1 lg:grid-cols-[58fr_42fr] gap-14 lg:gap-8 items-center min-h-[84dvh]">
 
           {/* Left: content */}
           <motion.div
-            className="flex flex-col gap-8"
+            className="flex flex-col gap-5"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            <motion.div variants={itemVariants}>
-              <span className="inline-flex items-center gap-2 text-xs font-medium bg-orange-500/10 border border-orange-500/25 text-orange-600 dark:text-orange-400 px-3.5 py-1.5 rounded-full">
+            <motion.div variants={itemVariants} className="flex flex-col gap-2">
+              <span className="inline-flex items-center gap-2 text-xs font-medium bg-orange-500/10 border border-orange-500/25 text-orange-600 dark:text-orange-400 px-3.5 py-1.5 rounded-full self-start">
                 <motion.span
                   className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400"
                   animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
@@ -68,9 +68,7 @@ export default function Hero() {
                 />
                 Para motoristas de app, freteiros e entregadores
               </span>
-            </motion.div>
 
-            <motion.div variants={itemVariants} className="flex flex-col gap-5">
               <h1 className="text-[clamp(2.8rem,6vw,4.5rem)] font-black tracking-tighter leading-[0.92] text-zinc-900 dark:text-zinc-50">
                 Descubra seu{' '}
                 <motion.span
@@ -173,17 +171,17 @@ function PhoneMockup() {
       />
 
       {/* Phone frame */}
-      <div className="relative w-[288px] h-[580px] bg-zinc-900 rounded-[42px] border border-white/10 overflow-hidden shadow-[0_32px_64px_rgba(0,0,0,0.35)] dark:shadow-[0_32px_64px_rgba(0,0,0,0.65)]">
+      <div className="relative w-[288px] h-[580px] bg-zinc-900 rounded-[42px] border border-zinc-300 dark:border-white/10 overflow-hidden shadow-[0_4px_6px_rgba(0,0,0,0.08),0_24px_48px_rgba(0,0,0,0.22),0_48px_80px_rgba(0,0,0,0.12)] dark:shadow-[0_32px_64px_rgba(0,0,0,0.65)]">
 
         {/* Dynamic island notch */}
         <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[88px] h-[22px] bg-zinc-950 rounded-full z-20 pointer-events-none" />
 
-        {/* Real screenshot */}
+        {/* Real screenshot — slide up reveal, no opacity fade */}
         <motion.div
           className="absolute inset-0 top-9"
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ y: 30, scale: 1.04 }}
+          animate={{ y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
           <Image
             src="/screenshots/index1.jpg"
@@ -191,6 +189,7 @@ function PhoneMockup() {
             fill
             className="object-cover object-top"
             sizes="288px"
+            quality={100}
             priority
           />
         </motion.div>
