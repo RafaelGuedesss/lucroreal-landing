@@ -121,7 +121,7 @@ export default function Hero() {
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1">
               {[
                 { Icon: ShieldCheck, text: 'Sem cartão de crédito' },
-                { Icon: DeviceMobile, text: 'iOS e Android' },
+                { Icon: DeviceMobile, text: 'Android' },
                 { Icon: ShieldCheck, text: 'Cancele quando quiser' },
               ].map(({ Icon, text }, i) => (
                 <motion.div

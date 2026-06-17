@@ -56,7 +56,7 @@ export default function CTA() {
               <div className="flex flex-wrap gap-x-5 gap-y-2">
                 {[
                   { Icon: ShieldCheck, text: 'Sem cartão de crédito' },
-                  { Icon: DeviceMobile, text: 'iOS e Android' },
+                  { Icon: DeviceMobile, text: 'Android' },
                 ].map(({ Icon, text }) => (
                   <div key={text} className="flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-600">
                     <Icon size={13} />
