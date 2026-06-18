@@ -33,7 +33,7 @@ export default function Footer() {
             Termos
           </Link>
           <a
-            href="https://wa.me/5511986560132"
+            href="https://wa.me/551124671454"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-zinc-400 hover:text-green-500 dark:text-zinc-600 dark:hover:text-green-400 text-xs transition-colors"
