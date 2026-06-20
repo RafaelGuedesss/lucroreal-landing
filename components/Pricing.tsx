@@ -162,13 +162,13 @@ export default function Pricing() {
               </motion.ul>
 
               <motion.a
-                href="#"
+                href="/assinar"
                 className="block w-full text-center bg-orange-500 text-white font-bold py-3.5 rounded-2xl shadow-[0_0_28px_rgba(249,115,22,0.22)] text-[0.9375rem]"
                 whileHover={{ scale: 1.02, backgroundColor: '#fb923c', boxShadow: '0 0 40px rgba(249,115,22,0.4)' }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               >
-                Testar 30 Dias Grátis
+                Assinar Plano
               </motion.a>
 
               <div className="flex items-center justify-center gap-1.5 mt-4 text-zinc-400 dark:text-zinc-600 text-xs">
