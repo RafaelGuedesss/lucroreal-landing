@@ -1,3 +1,5 @@
+'use client';
+
 import { CheckCircle, DeviceMobile } from '@phosphor-icons/react';
 
 export default function SucessoPage() {
