@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
 export async function POST(req: NextRequest) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+  const supabase = createClient(
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
   try {
     const body = await req.json();
     const { uid, email } = body as { uid?: string; email?: string };
@@ -23,7 +23,6 @@ export async function POST(req: NextRequest) {
     let customerEmail: string | undefined = email;
 
     if (uid) {
-      // Usuário vindo do app — busca pelo ID no Supabase
       const { data: perfil } = await supabase
         .from('perfil_usuario')
         .select('stripe_customer_id')
@@ -64,7 +63,6 @@ export async function POST(req: NextRequest) {
     if (customerId) {
       sessionParams.customer = customerId;
     } else {
-      // Visitante sem conta — usa apenas o email
       sessionParams.customer_email = customerEmail;
     }
 

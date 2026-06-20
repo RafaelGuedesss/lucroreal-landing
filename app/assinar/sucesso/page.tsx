@@ -1,4 +1,4 @@
-import { CheckCircle, DeviceMobile } from '@phosphor-icons/react/dist/ssr';
+import { CheckCircle, DeviceMobile } from '@phosphor-icons/react';
 
 export default function SucessoPage() {
   return (
