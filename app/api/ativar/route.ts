@@ -25,15 +25,16 @@ export async function POST(req: NextRequest) {
 
     const customerId = session.customer as string;
 
-    // Ativa o usuário no Supabase diretamente pelo ID
+    // Ativa o usuário no Supabase — cria a linha se não existir (upsert)
     const { error } = await supabase
       .from('perfil_usuario')
-      .update({
+      .upsert({
+        id: uid,
         status_assinatura: 'active',
         stripe_customer_id: customerId,
+        trial_end: new Date().toISOString(),
         updated_at: new Date().toISOString(),
-      })
-      .eq('id', uid);
+      }, { onConflict: 'id' });
 
     if (error) {
       console.error('Erro ao ativar usuário:', error.message);

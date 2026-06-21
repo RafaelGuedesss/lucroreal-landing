@@ -50,8 +50,7 @@ export async function POST(req: NextRequest) {
 
         await supabase
           .from('perfil_usuario')
-          .update({ stripe_customer_id: customerId })
-          .eq('id', uid);
+          .upsert({ id: uid, stripe_customer_id: customerId }, { onConflict: 'id' });
       }
     }
 

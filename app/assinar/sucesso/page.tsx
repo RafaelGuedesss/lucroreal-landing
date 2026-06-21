@@ -1,27 +1,43 @@
-'use client';
+import Stripe from 'stripe';
+import { createClient } from '@supabase/supabase-js';
 
-import { useEffect, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+async function ativarAssinatura(uid: string, sessionId: string) {
+  try {
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+    const supabase = createClient(
+      process.env.SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
 
-function SucessoContent() {
-  const params = useSearchParams();
-  const uid = params.get('uid');
-  const sessionId = params.get('session_id');
-  const activated = useRef(false);
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    if (session.payment_status !== 'paid') return;
 
-  useEffect(() => {
-    if (!uid || !sessionId || activated.current) return;
-    activated.current = true;
+    const customerId = session.customer as string;
+    await supabase
+      .from('perfil_usuario')
+      .upsert({
+        id: uid,
+        status_assinatura: 'active',
+        stripe_customer_id: customerId,
+        trial_end: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'id' });
+  } catch (err) {
+    console.error('Erro ao ativar assinatura:', err);
+  }
+}
 
-    fetch('/api/ativar', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ uid, session_id: sessionId }),
-    }).catch(() => {
-      // Falha silenciosa — o webhook ainda pode ativar
-    });
-  }, [uid, sessionId]);
+export default async function SucessoPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ uid?: string; session_id?: string }>;
+}) {
+  const { uid, session_id } = await searchParams;
+
+  // Ativação acontece no servidor antes de qualquer coisa chegar ao browser
+  if (uid && session_id) {
+    await ativarAssinatura(uid, session_id);
+  }
 
   return (
     <main
@@ -38,18 +54,18 @@ function SucessoContent() {
           </svg>
         </div>
 
-        <h1 className="text-3xl font-black tracking-tighter text-zinc-900 dark:text-zinc-50 mb-3">
+        <h1 className="text-3xl font-black tracking-tighter text-zinc-900 mb-3">
           Assinatura ativada!
         </h1>
         <p className="text-zinc-500 text-base mb-8">
           Seu pagamento foi confirmado. Agora volte ao app e toque em{' '}
-          <span className="font-semibold text-zinc-700 dark:text-zinc-300">
+          <span className="font-semibold text-zinc-700">
             &ldquo;Já assinei — verificar acesso&rdquo;
           </span>{' '}
           para liberar o acesso.
         </p>
 
-        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/8 rounded-2xl p-5 flex items-center gap-4 text-left shadow-sm">
+        <div className="bg-white border border-zinc-200 rounded-2xl p-5 flex items-center gap-4 text-left shadow-sm">
           <div className="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center shrink-0">
             <svg width="22" height="22" viewBox="0 0 256 256" fill="none">
               <path
@@ -59,19 +75,11 @@ function SucessoContent() {
             </svg>
           </div>
           <div>
-            <p className="text-zinc-900 dark:text-zinc-50 font-semibold text-sm">Volte para o Lucro Real</p>
+            <p className="text-zinc-900 font-semibold text-sm">Volte para o Lucro Real</p>
             <p className="text-zinc-500 text-xs mt-0.5">Toque em &ldquo;Já assinei&rdquo; na tela do app</p>
           </div>
         </div>
       </div>
     </main>
-  );
-}
-
-export default function SucessoPage() {
-  return (
-    <Suspense>
-      <SucessoContent />
-    </Suspense>
   );
 }
