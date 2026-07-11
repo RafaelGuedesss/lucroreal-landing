@@ -25,6 +25,7 @@ const screens = [
     Icon: Target,
     images: [
       '/screenshots/metas1.jpg',
+      '/screenshots/metas2.jpg',
     ],
     title: 'Meta mensal com indicador visual',
     description:
@@ -37,7 +38,6 @@ const screens = [
     Icon: GasPump,
     images: [
       '/screenshots/fuel1.jpg',
-      '/screenshots/fuel2.jpg',
     ],
     title: 'Controle total do combustível',
     description:
@@ -52,7 +52,6 @@ const screens = [
       '/screenshots/hist1.jpg',
       '/screenshots/hist2.jpg',
       '/screenshots/hist3.jpg',
-      '/screenshots/hist4.jpg',
     ],
     title: 'Histórico completo com gráficos',
     description:

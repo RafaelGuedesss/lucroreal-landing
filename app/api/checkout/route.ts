@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
       mode: 'subscription',
-      line_items: [{ price: 'price_1TRsDFDXOrQ6htSyJAAnXBNm', quantity: 1 }],
+      line_items: [{ price: 'price_1TkrOBDtUo0Y1VJCmHEqu06K', quantity: 1 }],
       success_url: uid
         ? `${siteUrl}/assinar/sucesso?uid=${uid}&session_id={CHECKOUT_SESSION_ID}`
         : `${siteUrl}/assinar/sucesso?session_id={CHECKOUT_SESSION_ID}`,

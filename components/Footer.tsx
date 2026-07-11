@@ -14,6 +14,7 @@ export default function Footer() {
             alt="Lucro Real"
             width={48}
             height={48}
+            style={{ height: 'auto' }}
             className="object-contain mix-blend-multiply dark:mix-blend-normal dark:brightness-90"
           />
           <span className="font-black text-base text-orange-500 tracking-tight">

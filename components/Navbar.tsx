@@ -41,6 +41,7 @@ export default function Navbar() {
             alt="Lucro Real"
             width={88}
             height={88}
+            style={{ height: 'auto' }}
             className="object-contain mix-blend-multiply dark:mix-blend-normal dark:brightness-90"
           />
           <span className="font-black text-xl tracking-tight text-orange-500">
