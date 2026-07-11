@@ -226,14 +226,11 @@ export default function AppShowcase() {
                 whileTap={total > 1 ? { scale: 0.97 } : {}}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               >
-                {/* Notch */}
-                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[88px] h-[22px] bg-zinc-950 rounded-full z-20 pointer-events-none" />
-
                 {/* Screenshot crossfade */}
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
                     key={`${activeTab}-${imgIndex}`}
-                    className="absolute inset-0 top-9"
+                    className="absolute inset-0"
                     custom={direction}
                     initial={{ opacity: 0, x: direction * 30 }}
                     animate={{ opacity: 1, x: 0 }}

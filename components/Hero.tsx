@@ -173,12 +173,9 @@ function PhoneMockup() {
       {/* Phone frame */}
       <div className="relative w-[288px] h-[580px] bg-zinc-900 rounded-[42px] border border-zinc-300 dark:border-white/10 overflow-hidden shadow-[0_4px_6px_rgba(0,0,0,0.08),0_24px_48px_rgba(0,0,0,0.22),0_48px_80px_rgba(0,0,0,0.12)] dark:shadow-[0_32px_64px_rgba(0,0,0,0.65)]">
 
-        {/* Dynamic island notch */}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[88px] h-[22px] bg-zinc-950 rounded-full z-20 pointer-events-none" />
-
         {/* Real screenshot — slide up reveal, no opacity fade */}
         <motion.div
-          className="absolute inset-0 top-9"
+          className="absolute inset-0"
           initial={{ y: 30, scale: 1.04 }}
           animate={{ y: 0, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
