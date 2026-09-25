@@ -35,6 +35,7 @@ export default function PrivacyPage() {
               <li><strong>Dados de localização:</strong> coordenadas GPS para calcular a distância percorrida durante as corridas. A localização é coletada somente enquanto o turno está ativo e pode ser coletada em segundo plano quando o turno estiver em andamento.</li>
               <li><strong>Dados financeiros das corridas:</strong> valor recebido, distância percorrida, gasto com combustível e outras despesas registradas manualmente pelo usuário.</li>
               <li><strong>Fotos:</strong> foto de perfil e foto do veículo enviadas opcionalmente pelo usuário.</li>
+              <li><strong>Identificador do dispositivo:</strong> um ID único do aparelho (Android ID/ID de fornecedor iOS), coletado apenas no momento do cadastro, para prevenir uso indevido do período de teste gratuito (ex.: criar várias contas no mesmo aparelho pra repetir os 30 dias grátis).</li>
             </ul>
           </Section>
 
@@ -46,7 +47,8 @@ export default function PrivacyPage() {
               <li>Autenticar o usuário e manter a sessão ativa;</li>
               <li>Gerenciar a assinatura do plano (via Stripe);</li>
               <li>Oferecer suporte técnico;</li>
-              <li>Melhorar as funcionalidades do aplicativo.</li>
+              <li>Melhorar as funcionalidades do aplicativo;</li>
+              <li>Prevenir fraude e abuso do período de teste gratuito.</li>
             </ul>
           </Section>
 

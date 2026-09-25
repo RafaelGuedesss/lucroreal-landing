@@ -33,6 +33,9 @@ export default function Footer() {
           <Link href="/terms" className="text-zinc-400 hover:text-zinc-700 dark:text-zinc-600 dark:hover:text-zinc-400 text-xs transition-colors">
             Termos
           </Link>
+          <Link href="/exclusao-de-conta" className="text-zinc-400 hover:text-zinc-700 dark:text-zinc-600 dark:hover:text-zinc-400 text-xs transition-colors">
+            Excluir Conta
+          </Link>
           <a
             href="https://wa.me/5511986560132"
             target="_blank"
