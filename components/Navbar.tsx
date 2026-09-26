@@ -50,9 +50,8 @@ export default function Navbar() {
             <span className="font-black text-xl tracking-tight text-orange-500">
               LUCRO REAL
             </span>
-            <span className="text-[9px] sm:text-[10px] font-semibold tracking-wide text-zinc-400 dark:text-zinc-500 whitespace-nowrap mt-0.5">
-              <span className="sm:hidden">Controle de gastos</span>
-              <span className="hidden sm:inline">Controle de gastos para motoristas</span>
+            <span className="text-[11px] font-semibold tracking-wide text-zinc-400 dark:text-zinc-500 whitespace-nowrap mt-0.5">
+              Controle de gastos
             </span>
           </span>
         </a>

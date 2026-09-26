@@ -17,9 +17,9 @@ export default function Home() {
       <ScrollProgress />
       <Navbar />
       <Hero />
+      <AppShowcase />
       <Stats />
       <Features />
-      <AppShowcase />
       <HowItWorks />
       <Testimonials />
       <Pricing />
