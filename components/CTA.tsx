@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Lightning, ShieldCheck, DeviceMobile } from '@phosphor-icons/react';
+import { GooglePlayLogo, CreditCard, ShieldCheck, DeviceMobile } from '@phosphor-icons/react';
+
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app';
 
 export default function CTA() {
   return (
@@ -44,26 +46,35 @@ export default function CTA() {
               só por tomar decisões melhores com dados reais.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center mb-6">
               <a
-                href="#pricing"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-bold px-7 py-4 rounded-2xl transition-all duration-200 active:scale-[0.98] shadow-[0_0_36px_rgba(249,115,22,0.32)] text-[0.9375rem]"
               >
-                <Lightning weight="fill" size={18} />
-                Testar 30 Dias Grátis
+                <GooglePlayLogo weight="fill" size={18} />
+                Baixar o App
               </a>
+              <a
+                href="#pricing"
+                className="inline-flex items-center gap-2 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 font-semibold px-7 py-4 rounded-2xl border border-zinc-300 dark:border-white/10 hover:border-zinc-400 dark:hover:border-white/20 transition-all duration-200 text-[0.9375rem]"
+              >
+                <CreditCard size={17} />
+                Assinar Plano
+              </a>
+            </div>
 
-              <div className="flex flex-wrap gap-x-5 gap-y-2">
-                {[
-                  { Icon: ShieldCheck, text: 'Sem cartão de crédito' },
-                  { Icon: DeviceMobile, text: 'Android' },
-                ].map(({ Icon, text }) => (
-                  <div key={text} className="flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-600">
-                    <Icon size={13} />
-                    {text}
-                  </div>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-x-5 gap-y-2">
+              {[
+                { Icon: ShieldCheck, text: 'Sem cartão de crédito' },
+                { Icon: DeviceMobile, text: 'Android' },
+              ].map(({ Icon, text }) => (
+                <div key={text} className="flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-600">
+                  <Icon size={13} />
+                  {text}
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>

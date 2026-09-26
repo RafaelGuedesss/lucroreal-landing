@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChartBar, Target, GasPump, ClockCounterClockwise, CheckCircle, CaretRight } from '@phosphor-icons/react';
+import { ChartBar, Wrench, Target, GasPump, ClockCounterClockwise, CheckCircle, CaretRight } from '@phosphor-icons/react';
 
 const screens = [
   {
     id: 'dashboard',
-    label: 'Dashboard',
+    label: 'Início',
     Icon: ChartBar,
     images: [
       '/screenshots/index1.jpg',
@@ -16,8 +16,22 @@ const screens = [
     ],
     title: 'Lucro líquido em destaque',
     description:
-      'Ao abrir o app você já vê o que ganhou na semana, quantas corridas fez e o km rodado — sem precisar calcular nada.',
-    highlights: ['Odômetro central com GPS', 'Filtros por dia, semana e mês', 'Custos por etapa em cada corrida'],
+      'Ao abrir o app você já vê o que ganhou, quantas corridas fez e o km rodado — com o custo de combustível calculado em tempo real, direto na tela.',
+    highlights: ['Custo de combustível ao vivo no turno', 'Aviso de manutenção pendente na tela inicial', 'Filtros por dia, semana, mês e categoria'],
+  },
+  {
+    id: 'manutencao',
+    label: 'Manutenção',
+    Icon: Wrench,
+    isNew: true,
+    images: [
+      '/screenshots/manutencao1.jpg',
+      '/screenshots/manutencao2.jpg',
+    ],
+    title: 'Manutenção & Despesas',
+    description:
+      'Acompanhe troca de óleo, pneus, documentação do veículo e outros gastos — com lembretes automáticos, tudo separado do seu lucro líquido.',
+    highlights: ['Categorias: Manutenção, Diversos, Documentação', 'Ordenação por prioridade, km, data ou A-Z', 'Relatório em PDF do período'],
   },
   {
     id: 'metas',
@@ -25,9 +39,8 @@ const screens = [
     Icon: Target,
     images: [
       '/screenshots/metas1.jpg',
-      '/screenshots/metas2.jpg',
     ],
-    title: 'Meta mensal com indicador visual',
+    title: 'Meta com indicador visual',
     description:
       'Defina seu objetivo e acompanhe o progresso com o indicador circular em tempo real. Saiba exatamente quanto falta para atingir.',
     highlights: ['Meta personalizada por período', 'Percentual e valor restante', 'Atualização automática por corrida'],
@@ -38,11 +51,12 @@ const screens = [
     Icon: GasPump,
     images: [
       '/screenshots/fuel1.jpg',
+      '/screenshots/fuel2.jpg',
     ],
     title: 'Controle total do combustível',
     description:
       'Registre cada abastecimento. Veja custo por km, média km/lt, gasto total do período e o histórico completo de cada parada.',
-    highlights: ['Custo real por km', 'Histórico de abastecimentos', 'Média automática km/lt'],
+    highlights: ['Medidor de autonomia visual', 'Custo real por km', 'Histórico de abastecimentos'],
   },
   {
     id: 'historico',
@@ -51,12 +65,11 @@ const screens = [
     images: [
       '/screenshots/hist1.jpg',
       '/screenshots/hist2.jpg',
-      '/screenshots/hist3.jpg',
     ],
     title: 'Histórico completo com gráficos',
     description:
-      'Compare semanas e dias em gráficos de barras. Veja custo vs lucro real, detalhe de cada corrida e exporte relatórios em PDF.',
-    highlights: ['Gráfico de barras semanal e diário', 'Detalhe completo por corrida', 'Exportação em PDF'],
+      'Compare semanas em gráficos de barras. Veja custo vs lucro real, detalhe de cada corrida e exporte relatórios em PDF.',
+    highlights: ['Gráfico de barras semanal', 'Detalhe completo por corrida', 'Exportação em PDF'],
   },
 ];
 
@@ -132,7 +145,7 @@ export default function AppShowcase() {
                   <motion.button
                     key={s.id}
                     onClick={() => switchTab(s.id)}
-                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-200 ${
+                    className={`relative inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-200 ${
                       isActive
                         ? 'bg-orange-500 text-white shadow-[0_0_22px_rgba(249,115,22,0.28)]'
                         : 'bg-zinc-100 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-800'
@@ -142,6 +155,9 @@ export default function AppShowcase() {
                   >
                     <Icon weight="bold" size={14} />
                     {s.label}
+                    {s.isNew && !isActive && (
+                      <span className="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 rounded-full bg-orange-500 border-2 border-white dark:border-zinc-950" />
+                    )}
                   </motion.button>
                 );
               })}

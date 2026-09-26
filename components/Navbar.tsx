@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { List, X } from '@phosphor-icons/react';
+import { List, X, GooglePlayLogo } from '@phosphor-icons/react';
 import ThemeToggle from './ThemeToggle';
+
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app';
 
 const links = [
   { label: 'Funcionalidades', href: '#features' },
@@ -44,8 +46,14 @@ export default function Navbar() {
             style={{ height: 'auto' }}
             className="object-contain mix-blend-multiply dark:mix-blend-normal dark:brightness-90"
           />
-          <span className="font-black text-xl tracking-tight text-orange-500">
-            LUCRO REAL
+          <span className="flex flex-col leading-none">
+            <span className="font-black text-xl tracking-tight text-orange-500">
+              LUCRO REAL
+            </span>
+            <span className="text-[9px] sm:text-[10px] font-semibold tracking-wide text-zinc-400 dark:text-zinc-500 whitespace-nowrap mt-0.5">
+              <span className="sm:hidden">Controle de gastos</span>
+              <span className="hidden sm:inline">Controle de gastos para motoristas</span>
+            </span>
           </span>
         </a>
 
@@ -68,13 +76,16 @@ export default function Navbar() {
             href="#pricing"
             className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
           >
-            Entrar
+            Assinar
           </a>
           <a
-            href="#pricing"
-            className="text-sm font-semibold bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg transition-all duration-200 active:scale-[0.98]"
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg transition-all duration-200 active:scale-[0.98]"
           >
-            Testar Grátis
+            <GooglePlayLogo weight="fill" size={15} />
+            Baixar o App
           </a>
         </div>
 
@@ -113,11 +124,21 @@ export default function Navbar() {
               ))}
             </ul>
             <a
-              href="#pricing"
-              className="block text-center text-sm font-semibold bg-orange-500 hover:bg-orange-400 text-white px-4 py-3 rounded-xl transition-colors"
+              href={PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 text-center text-sm font-semibold bg-orange-500 hover:bg-orange-400 text-white px-4 py-3 rounded-xl transition-colors mb-2.5"
               onClick={() => setOpen(false)}
             >
-              Testar 30 Dias Grátis
+              <GooglePlayLogo weight="fill" size={16} />
+              Baixar o App
+            </a>
+            <a
+              href="#pricing"
+              className="block text-center text-sm font-medium text-zinc-500 dark:text-zinc-400 px-4 py-2"
+              onClick={() => setOpen(false)}
+            >
+              ou assinar o plano
             </a>
           </motion.div>
         )}

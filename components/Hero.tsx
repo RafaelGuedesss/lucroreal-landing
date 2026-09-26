@@ -1,8 +1,10 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
-import { Lightning, ArrowRight, ShieldCheck, DeviceMobile } from '@phosphor-icons/react';
+import { GooglePlayLogo, CreditCard, ShieldCheck, DeviceMobile, SpeakerHigh, SpeakerSlash } from '@phosphor-icons/react';
+import { useRef, useState } from 'react';
+
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app';
 
 const containerVariants = {
   hidden: {},
@@ -97,24 +99,26 @@ export default function Hero() {
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3">
               <motion.a
-                href="#pricing"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors duration-200 shadow-[0_0_28px_rgba(249,115,22,0.3)]"
                 whileHover={{ scale: 1.02, boxShadow: '0 0 40px rgba(249,115,22,0.45)' }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               >
-                <Lightning weight="fill" size={17} />
-                Testar 30 Dias Grátis
+                <GooglePlayLogo weight="fill" size={17} />
+                Baixar o App
               </motion.a>
               <motion.a
-                href="#how-it-works"
+                href="#pricing"
                 className="inline-flex items-center justify-center gap-2 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 font-medium px-6 py-3.5 rounded-xl border border-zinc-300 dark:border-white/10 hover:border-zinc-400 dark:hover:border-white/20 transition-all duration-200"
                 whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               >
-                Ver como funciona
-                <ArrowRight size={15} />
+                <CreditCard size={15} />
+                Assinar Plano
               </motion.a>
             </motion.div>
 
@@ -156,6 +160,9 @@ export default function Hero() {
 }
 
 function PhoneMockup() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
+
   return (
     <motion.div
       className="relative"
@@ -173,23 +180,34 @@ function PhoneMockup() {
       {/* Phone frame */}
       <div className="relative w-[288px] h-[580px] bg-zinc-900 rounded-[42px] border border-zinc-300 dark:border-white/10 overflow-hidden shadow-[0_4px_6px_rgba(0,0,0,0.08),0_24px_48px_rgba(0,0,0,0.22),0_48px_80px_rgba(0,0,0,0.12)] dark:shadow-[0_32px_64px_rgba(0,0,0,0.65)]">
 
-        {/* Real screenshot — slide up reveal, no opacity fade */}
+        {/* Vídeo promocional — autoplay mudo (política dos navegadores), com
+            botão de som. Preenche o mesmo espaço que a screenshot ocupava. */}
         <motion.div
           className="absolute inset-0"
           initial={{ y: 30, scale: 1.04 }}
           animate={{ y: 0, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Image
-            src="/screenshots/index1.jpg"
-            alt="Lucro Real - Dashboard principal"
-            fill
-            className="object-cover object-top"
-            sizes="288px"
-            quality={100}
-            priority
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            src="/video/promo.mp4"
+            autoPlay
+            loop
+            muted={muted}
+            playsInline
+            preload="auto"
           />
         </motion.div>
+
+        {/* Botão de som */}
+        <button
+          onClick={() => setMuted((m) => !m)}
+          aria-label={muted ? 'Ativar som' : 'Silenciar'}
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/45 backdrop-blur-sm flex items-center justify-center text-white active:scale-95 transition-transform"
+        >
+          {muted ? <SpeakerSlash size={16} weight="bold" /> : <SpeakerHigh size={16} weight="bold" />}
+        </button>
 
         {/* Bottom home indicator */}
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 rounded-full bg-white/20 z-20 pointer-events-none" />

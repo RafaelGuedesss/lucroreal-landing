@@ -1,14 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Lightning, MapPin, GasPump, Target, ChartLine, Cloud } from '@phosphor-icons/react';
+import { Lightning, MapPin, Wrench, GasPump, Target, ChartLine } from '@phosphor-icons/react';
 
 const features = [
   {
     Icon: Lightning,
     title: 'Lucro Líquido Real',
     description:
-      'Cada corrida registrada já desconta combustível e km rodado automaticamente. Você vê o que realmente entrou no bolso — sem surpresas.',
+      'Cada corrida registrada já desconta combustível e km rodado automaticamente. Some Manutenção & Despesas quando quiser ver o impacto completo no seu bolso.',
     span: 'md:col-span-2',
     accent: true,
   },
@@ -19,6 +19,15 @@ const features = [
       'Rastreamento de quilometragem por GPS. Saiba exatamente quanto km rodou por turno, semana ou mês.',
     span: '',
     accent: false,
+  },
+  {
+    Icon: Wrench,
+    title: 'Manutenção & Despesas',
+    description:
+      'Troca de óleo, pneus, documentação do veículo (IPVA, licenciamento, multas), pedágio e outros gastos — com lembretes automáticos, separado do seu lucro líquido.',
+    span: 'md:col-span-2',
+    accent: false,
+    isNew: true,
   },
   {
     Icon: GasPump,
@@ -42,14 +51,6 @@ const features = [
     description:
       'Veja todos os seus turnos com filtros por dia, semana, mês ou período. Compare períodos e evolua sempre.',
     span: '',
-    accent: false,
-  },
-  {
-    Icon: Cloud,
-    title: 'Backup na Nuvem',
-    description:
-      'Seus dados salvos em tempo real. Troque de celular sem perder nada. Acesse de qualquer dispositivo.',
-    span: 'md:col-span-2',
     accent: false,
   },
 ];
@@ -99,7 +100,7 @@ export default function Features() {
                 }}
               >
                 <motion.div
-                  className={`group h-full p-6 rounded-2xl border cursor-default ${
+                  className={`relative group h-full p-6 rounded-2xl border cursor-default ${
                     f.accent
                       ? 'bg-orange-50 dark:bg-orange-500/5 border-orange-200 dark:border-orange-500/15'
                       : 'bg-zinc-50 dark:bg-zinc-900/35 border-zinc-100 dark:border-white/5'
@@ -110,6 +111,11 @@ export default function Features() {
                     transition: { type: 'spring', stiffness: 300, damping: 20 },
                   }}
                 >
+                  {f.isNew && (
+                    <span className="absolute -top-2.5 right-5 bg-orange-500 text-white text-[10px] font-extrabold tracking-wide px-2.5 py-0.5 rounded-full shadow-sm">
+                      NOVO
+                    </span>
+                  )}
                   <motion.div
                     className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 ${
                       f.accent
