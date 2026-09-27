@@ -13,6 +13,7 @@ const screens = [
     images: [
       '/screenshots/index1.jpg',
       '/screenshots/index2.jpg',
+      '/screenshots/index3.jpg',
     ],
     title: 'Lucro líquido em destaque',
     description:
