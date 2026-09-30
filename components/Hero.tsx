@@ -1,10 +1,10 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { GooglePlayLogo, CreditCard, ShieldCheck, DeviceMobile, SpeakerHigh, SpeakerSlash } from '@phosphor-icons/react';
+import { CreditCard, ShieldCheck, DeviceMobile, SpeakerHigh, SpeakerSlash } from '@phosphor-icons/react';
 import { useRef, useState } from 'react';
 
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app&hl=pt_BR';
 
 const containerVariants = {
   hidden: {},
@@ -102,13 +102,12 @@ export default function Hero() {
                 href={PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors duration-200 shadow-[0_0_28px_rgba(249,115,22,0.3)]"
-                whileHover={{ scale: 1.02, boxShadow: '0 0 40px rgba(249,115,22,0.45)' }}
+                className="inline-flex items-center justify-center"
+                whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               >
-                <GooglePlayLogo weight="fill" size={17} />
-                Baixar o App
+                <img src="/google-play-badge.png" alt="Disponível no Google Play" className="h-14 w-auto" />
               </motion.a>
               <motion.a
                 href="#pricing"

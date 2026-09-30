@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { GooglePlayLogo, CreditCard, ShieldCheck, DeviceMobile } from '@phosphor-icons/react';
+import { CreditCard, ShieldCheck, DeviceMobile } from '@phosphor-icons/react';
 
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app&hl=pt_BR';
 
 export default function CTA() {
   return (
@@ -51,10 +51,9 @@ export default function CTA() {
                 href={PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-bold px-7 py-4 rounded-2xl transition-all duration-200 active:scale-[0.98] shadow-[0_0_36px_rgba(249,115,22,0.32)] text-[0.9375rem]"
+                className="inline-flex items-center transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
               >
-                <GooglePlayLogo weight="fill" size={18} />
-                Baixar o App
+                <img src="/google-play-badge.png" alt="Disponível no Google Play" className="h-16 w-auto" />
               </a>
               <a
                 href="#pricing"

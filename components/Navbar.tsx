@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { List, X, GooglePlayLogo } from '@phosphor-icons/react';
+import { List, X } from '@phosphor-icons/react';
 import ThemeToggle from './ThemeToggle';
 
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app&hl=pt_BR';
 
 const links = [
   { label: 'Funcionalidades', href: '#features' },
@@ -81,10 +81,9 @@ export default function Navbar() {
             href={PLAY_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-lg transition-all duration-200 active:scale-[0.98]"
+            className="inline-flex items-center transition-transform duration-200 hover:scale-[1.04] active:scale-[0.98]"
           >
-            <GooglePlayLogo weight="fill" size={15} />
-            Baixar o App
+            <img src="/google-play-badge.png" alt="Disponível no Google Play" className="h-10 w-auto" />
           </a>
         </div>
 
@@ -126,11 +125,10 @@ export default function Navbar() {
               href={PLAY_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 text-center text-sm font-semibold bg-orange-500 hover:bg-orange-400 text-white px-4 py-3 rounded-xl transition-colors mb-2.5"
+              className="flex items-center justify-center mb-2.5"
               onClick={() => setOpen(false)}
             >
-              <GooglePlayLogo weight="fill" size={16} />
-              Baixar o App
+              <img src="/google-play-badge.png" alt="Disponível no Google Play" className="h-12 w-auto" />
             </a>
             <a
               href="#pricing"
