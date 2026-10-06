@@ -1,12 +1,13 @@
 import Stripe from 'stripe';
+import { env } from '@/lib/env';
 import { createClient } from '@supabase/supabase-js';
 
 async function ativarAssinatura(uid: string, sessionId: string) {
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+    const stripe = new Stripe(env('STRIPE_SECRET_KEY')!);
     const supabase = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      env('SUPABASE_URL')!,
+      env('SUPABASE_SERVICE_ROLE_KEY')!
     );
 
     const session = await stripe.checkout.sessions.retrieve(sessionId);

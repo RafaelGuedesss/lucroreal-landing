@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { env } from '@/lib/env';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 async function findUserIdByEmail(
@@ -19,7 +20,7 @@ async function findUserIdByEmail(
 
 export async function POST(req: NextRequest) {
   try {
-    const stripeKey = process.env.STRIPE_SECRET_KEY;
+    const stripeKey = env('STRIPE_SECRET_KEY');
     if (!stripeKey) {
       return NextResponse.json({ error: 'Stripe não configurado.' }, { status: 500 });
     }
@@ -27,8 +28,8 @@ export async function POST(req: NextRequest) {
     const stripe = new Stripe(stripeKey);
 
     const supabase = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      env('SUPABASE_URL')!,
+      env('SUPABASE_SERVICE_ROLE_KEY')!
     );
 
     const body = await req.json();
@@ -50,7 +51,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.mylucroreal.com.br';
+    const siteUrl = env('NEXT_PUBLIC_SITE_URL') ?? 'https://www.mylucroreal.com.br';
     let customerId: string | undefined;
     let customerEmail: string | undefined = email;
 

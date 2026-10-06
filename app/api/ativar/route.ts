@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { env } from '@/lib/env';
 import { createClient } from '@supabase/supabase-js';
 
 export async function POST(req: NextRequest) {
@@ -10,10 +11,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'uid e session_id obrigatórios' }, { status: 400 });
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+    const stripe = new Stripe(env('STRIPE_SECRET_KEY')!);
     const supabase = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      env('SUPABASE_URL')!,
+      env('SUPABASE_SERVICE_ROLE_KEY')!
     );
 
     // Verifica a sessão no Stripe
