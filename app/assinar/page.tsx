@@ -109,11 +109,16 @@ function AssinarForm() {
           {!uid && (
             <input
               type="email"
-              placeholder="Seu e-mail"
+              placeholder="E-mail da sua conta no app"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mb-4 px-4 py-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 text-sm outline-none focus:border-orange-400 transition-colors"
+              className="w-full mb-2 px-4 py-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 text-sm outline-none focus:border-orange-400 transition-colors"
             />
+          )}
+          {!uid && (
+            <p className="text-zinc-400 text-xs mb-4">
+              Use o mesmo e-mail que você cadastrou no app Lucro Real.
+            </p>
           )}
 
           {/* Error */}

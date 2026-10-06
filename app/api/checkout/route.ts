@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
+async function findUserIdByEmail(
+  supabase: SupabaseClient,
+  email: string
+): Promise<string | undefined> {
+  const target = email.trim().toLowerCase();
+  const perPage = 1000;
+  for (let page = 1; ; page++) {
+    const { data, error } = await supabase.auth.admin.listUsers({ page, perPage });
+    if (error) throw error;
+    const user = data.users.find((u) => u.email?.toLowerCase() === target);
+    if (user) return user.id;
+    if (data.users.length < perPage) return undefined;
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,10 +32,22 @@ export async function POST(req: NextRequest) {
     );
 
     const body = await req.json();
-    const { uid, email } = body as { uid?: string; email?: string };
+    const { email } = body as { uid?: string; email?: string };
+    let { uid } = body as { uid?: string };
 
     if (!uid && !email) {
       return NextResponse.json({ error: 'uid ou email obrigatório' }, { status: 400 });
+    }
+
+    // Sem uid (visitante do site): vincula a assinatura à conta do app pelo e-mail
+    if (!uid && email) {
+      uid = await findUserIdByEmail(supabase, email);
+      if (!uid) {
+        return NextResponse.json(
+          { error: 'Não encontramos uma conta com esse e-mail. Cadastre-se primeiro no app Lucro Real e use o mesmo e-mail aqui.' },
+          { status: 404 }
+        );
+      }
     }
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.mylucroreal.com.br';
