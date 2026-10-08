@@ -3,16 +3,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { List, X } from '@phosphor-icons/react';
 import ThemeToggle from './ThemeToggle';
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.lucroreal.app&hl=pt_BR';
 
 const links = [
-  { label: 'Funcionalidades', href: '#features' },
-  { label: 'Como Funciona', href: '#how-it-works' },
-  { label: 'Preço', href: '#pricing' },
-  { label: 'Depoimentos', href: '#testimonials' },
+  { label: 'Funcionalidades', href: '/#features' },
+  { label: 'Como Funciona', href: '/#how-it-works' },
+  { label: 'Tutoriais', href: '/tutoriais' },
+  { label: 'Preço', href: '/#pricing' },
+  { label: 'Depoimentos', href: '/#testimonials' },
 ];
 
 export default function Navbar() {
@@ -37,7 +39,7 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/screenshots/fiorino.jpg"
             alt="Lucro Real"
@@ -54,29 +56,29 @@ export default function Navbar() {
               Controle de gastos
             </span>
           </span>
-        </a>
+        </Link>
 
         <ul className="hidden md:flex items-center gap-7">
           {links.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors duration-200"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
-          <a
-            href="#pricing"
+          <Link
+            href="/#pricing"
             className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
           >
             Assinar
-          </a>
+          </Link>
           <a
             href={PLAY_STORE_URL}
             target="_blank"
@@ -111,13 +113,13 @@ export default function Navbar() {
             <ul className="flex flex-col gap-4 mb-5">
               {links.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors"
                     onClick={() => setOpen(false)}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -130,13 +132,13 @@ export default function Navbar() {
             >
               <img src="/google-play-badge.png" alt="Disponível no Google Play" className="h-12 w-auto" />
             </a>
-            <a
-              href="#pricing"
+            <Link
+              href="/#pricing"
               className="block text-center text-sm font-medium text-zinc-500 dark:text-zinc-400 px-4 py-2"
               onClick={() => setOpen(false)}
             >
               ou assinar o plano
-            </a>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

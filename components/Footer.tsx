@@ -27,6 +27,9 @@ export default function Footer() {
         </p>
 
         <div className="flex items-center gap-6">
+          <Link href="/tutoriais" className="text-zinc-400 hover:text-zinc-700 dark:text-zinc-600 dark:hover:text-zinc-400 text-xs transition-colors">
+            Tutoriais
+          </Link>
           <Link href="/privacy" className="text-zinc-400 hover:text-zinc-700 dark:text-zinc-600 dark:hover:text-zinc-400 text-xs transition-colors">
             Privacidade
           </Link>

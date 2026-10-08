@@ -5,6 +5,7 @@ import Stats from "@/components/Stats";
 import Features from "@/components/Features";
 import AppShowcase from "@/components/AppShowcase";
 import HowItWorks from "@/components/HowItWorks";
+import TutorialHighlight from "@/components/TutorialHighlight";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
@@ -21,6 +22,7 @@ export default function Home() {
       <Stats />
       <Features />
       <HowItWorks />
+      <TutorialHighlight />
       <Testimonials />
       <Pricing />
       <FAQ />
