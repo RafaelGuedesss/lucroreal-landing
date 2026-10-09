@@ -56,7 +56,7 @@ t4=$(( t3 + 90 ))
 # Tela final: mesmo fundo azul-escuro e laranja dos vídeos
 end_v="color=c=${BG}:s=${W}x${H}:r=30:d=${END_SECONDS},\
 drawtext=fontfile='${FONT_TITLE}':text='Lucro Real':fontcolor=0xF97316:fontsize=80:x=(w-text_w)/2:y=${t1},\
-drawtext=fontfile='${FONT_REG}':text='Tutoriais e assinatura em':fontcolor=0xA1A1AA:fontsize=32:x=(w-text_w)/2:y=${t2},\
+drawtext=fontfile='${FONT_REG}':text='Mais tutoriais em':fontcolor=0xA1A1AA:fontsize=32:x=(w-text_w)/2:y=${t2},\
 drawtext=fontfile='${FONT_BOLD}':text='${SITE}':fontcolor=0xFFFFFF:fontsize=44:x=(w-text_w)/2:y=${t3},\
 drawtext=fontfile='${FONT_REG}':text='Baixe grátis na Google Play':fontcolor=0xA1A1AA:fontsize=32:x=(w-text_w)/2:y=${t4},\
 fade=t=in:st=0:d=0.4:color=${BG},setsar=1,format=yuv420p[ev];\
