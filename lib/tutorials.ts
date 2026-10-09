@@ -37,6 +37,17 @@ export const tutorials: Tutorial[] = [
     aspect: '720 / 1280',
     category: 'Visão geral',
   },
+  {
+    slug: 'modo-automatico',
+    title: 'Modo automático: o GPS conta o km por você',
+    description:
+      'Como ativar o modo automático e liberar as permissões (localização, bateria, autoinício) para o GPS registrar o km sozinho, até com a tela apagada.',
+    src: '/video/tutorial-modo-automatico.mp4',
+    poster: '/video/posters/tutorial-modo-automatico.jpg',
+    duration: '1 min',
+    aspect: '720 / 1280',
+    category: 'Corridas',
+  },
 ];
 
 // Vídeo exibido na página inicial
